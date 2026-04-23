@@ -1,0 +1,40 @@
+// =============================================================================
+// Typography System - V3 Emergency Dashboard
+// 規範：嚴禁硬編碼，所有組件字體必須引用以下變數
+// =============================================================================
+
+// --- 1. 字體系列 (Font Family) ---
+$font-family-base: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+$font-family-data: "Roboto", "Segoe UI", sans-serif; // 用於數值與時間，辨識度較高
+
+// --- 2. 字體大小 (Font Size) ---
+// 採用語意化命名，確保在不同分頁（等候、處置、報告）間的一致性
+$fs-h1: 24pt;       // 頁面標題 (如：診間工作台)
+$fs-h2: 18pt;       // 區塊標題 (如：我的等候診療區)
+$fs-h3: 15pt;       // 次級標題 (如：病患監控區、檢驗細項標題)
+
+$fs-base: 13pt;     // 標準內文 (如：表格內容、病患姓名)
+$fs-label: 11pt;    // 標籤/標題列 (如：表格 Header、分頁標籤、去識別化 ID)
+$fs-small: 10pt;    // 輔助資訊 (如：進度百分比、時間戳記、按鈕文字)
+
+// --- 3. 字重 (Font Weight) ---
+$fw-light: 300;
+$fw-normal: 400;
+$fw-medium: 500;
+$fw-bold: 700;
+
+// --- 4. 行高 (Line Height) ---
+$lh-tight: 1.2;     // 用於標題或緊湊的表格
+$lh-base: 1.5;      // 標準閱讀行高
+$lh-relaxed: 1.8;   // 用於備註或長文
+
+// --- 5. 字體外觀 Mixins (方便快速套用) ---
+@mixin font-style($size, $weight: $fw-normal, $lh: $lh-base) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lh;
+}
+
+// 範例套用：
+// .patient-name { @include font-style($fs-base, $fw-bold); }
+// .id-number { @include font-style($fs-label, $fw-light, $lh-tight); color: $gray-500; }
