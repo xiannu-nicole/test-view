@@ -1,9 +1,8 @@
 <template>
   <MainLayout>
-    <div class="records-view">
-      <header class="page-header">
+    <!-- todo: 搜尋功能 -->
+      <!-- <header class="page-header">
         <h1 class="page-title">完診紀錄</h1>
-        
         <div class="filter-bar">
           <div class="filter-group">
             <label>日期範圍</label>
@@ -23,7 +22,7 @@
 
           <button class="search-btn">搜尋</button>
         </div>
-      </header>
+      </header> -->
 
       <div class="table-container">
         <table class="patients-table">
@@ -31,6 +30,7 @@
             <tr>
               <th class="col-index">#</th>
               <th class="col-info">病患資訊</th>
+              <th class="col-mrn">病歷號</th>
               <th class="col-triage">檢傷級別</th>
               <th class="col-time">到達時間</th>
               <th class="col-reason">主訴</th>
@@ -43,6 +43,7 @@
               <td class="col-info">
                 <div class="name">{{ record.name }}</div>
               </td>
+              <td class="col-mrn">{{ record.mrn }}</td>
               <td class="col-triage">
                 <span :class="['triage-badge', `level-${record.triageLevel}`]">
                   {{ record.triageLevel }} 級
@@ -57,7 +58,6 @@
           </tbody>
         </table>
       </div>
-    </div>
   </MainLayout>
 </template>
 
@@ -65,20 +65,12 @@
 import MainLayout from '@/components/MainLayout.vue';
 
 const mockRecords = [
-  { id: '1', name: '王*明', triageLevel: 3, arrivalTime: '10:30', chiefComplaint: '腹痛、噁心' },
-  { id: '2', name: '點*如', triageLevel: 4, arrivalTime: '11:15', chiefComplaint: '頭暈' },
-  { id: '3', name: '王*宏', triageLevel: 2, arrivalTime: '12:45', chiefComplaint: '胸悶、喘' },
+  { id: '1', name: '王*明', mrn: '***53', triageLevel: 3, arrivalTime: '10:30', chiefComplaint: '腹痛、噁心' },
+  { id: '2', name: '點*如', mrn: '***72', triageLevel: 4, arrivalTime: '11:15', chiefComplaint: '頭暈' },
+  { id: '3', name: '王*宏', mrn: '***01', triageLevel: 2, arrivalTime: '12:45', chiefComplaint: '胸悶、喘' },
 ];
 </script>
-
 <style lang="scss" scoped>
-.records-view {
-  background-color: $white;
-  border-radius: 12px;
-  padding: $spacing-32;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
 .page-header {
   margin-bottom: $spacing-40;
   
@@ -150,6 +142,7 @@ const mockRecords = [
 }
 
 .table-container {
+  background-color: $white;
   overflow-x: auto;
   border: 1px solid $gray-200;
   border-radius: 12px;

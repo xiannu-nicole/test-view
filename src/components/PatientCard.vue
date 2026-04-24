@@ -4,12 +4,15 @@
     <td class="col-info">
       <div class="name">{{ patient.name }}</div>
     </td>
+    <td class="col-mrn">
+      <div class="mrn">{{ patient.mrn }}</div>
+    </td>
     <td class="col-triage">
       <span :class="['triage-badge', `level-${patient.triageLevel}`]">
         {{ patient.triageLevel }} 級
       </span>
     </td>
-    <td class="col-time">{{ patient.arrivalTime }}</td>
+    <td class="col-time">{{ patient.waitingTime }} 分鐘</td>
     <td class="col-reason">{{ patient.chiefComplaint }}</td>
     <td class="col-action">
       <div class="action-cell">
@@ -111,17 +114,21 @@ const displayActionLabel = computed(() => {
 }
 
 .progress-tag {
-  padding: $spacing-4 $spacing-12;
+  width: 10rem;
+  text-align: center;
+  padding: $spacing-8 $spacing-24;
   background-color: $gray-100;
   color: $gray-500;
   border-radius: 4px;
-  @include font-style($fs-small, $fw-medium);
+  @include font-style($fs-base, $fw-medium);
   white-space: nowrap;
 }
 
 .action-btn {
+  width: 10rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: $spacing-8;
   padding: $spacing-8 $spacing-24;
   border-radius: 8px;

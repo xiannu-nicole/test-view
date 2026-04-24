@@ -1,6 +1,7 @@
 <template>
   <header class="header">
-    <div class="user-info">
+    <!-- todo -->
+    <!-- <div class="user-info">
       <div class="menu-toggle">
         <i class="icon icon-menu"></i>
       </div>
@@ -9,7 +10,7 @@
         <span class="divider">|</span>
         <span class="dept">{{ userStore.userInfo?.dept || '急診科' }}</span>
       </div>
-    </div>
+    </div> -->
 
     <div class="header-stats">
       <div v-for="stat in stats" :key="stat.label" class="stat-item">
@@ -19,13 +20,14 @@
     </div>
 
     <div class="header-actions">
-      <div class="search-bar">
+      <!-- todo -->
+      <!-- <div class="search-bar">
         <i class="icon icon-search"></i>
       </div>
       <div class="notification">
         <i class="icon icon-bell"></i>
         <span class="badge"></span>
-      </div>
+      </div> -->
       <div class="profile-dropdown">
         <div class="avatar">
           <i class="icon icon-user"></i>

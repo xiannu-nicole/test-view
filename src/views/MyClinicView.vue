@@ -21,8 +21,9 @@
               <tr>
                 <th class="col-index">#</th>
                 <th class="col-info">病患資訊</th>
+                <th class="col-mrn">病歷號</th>
                 <th class="col-triage">檢傷級別</th>
-                <th class="col-time">到達時間</th>
+                <th class="col-time">等候時間</th>
                 <th class="col-reason">主訴</th>
                 <th class="col-action">行動</th>
               </tr>
@@ -59,20 +60,20 @@ const tabs = ref([
 
 const patients = ref<Patient[]>([
   { 
-    id: '1', name: '王*明', triageLevel: 3, arrivalTime: '10:15', chiefComplaint: '腹痛、噁心',
-    status: 'initial', statusLabel: '初診', waitTime: 28 
+    id: '1', name: '王*明', mrn:'***31', triageLevel: 3, arrivalTime: '10:15', chiefComplaint: '腹痛、噁心',
+    status: 'initial', statusLabel: '初診', waitingTime: 18 
   },
   { 
-    id: '2', name: '點*如', triageLevel: 4, arrivalTime: '10:17', chiefComplaint: '頭暈',
-    status: 'examining', statusLabel: '檢驗中', waitTime: 22,
+    id: '2', name: '點*如', mrn:'***22', triageLevel: 4, arrivalTime: '10:17', chiefComplaint: '頭暈',
+    status: 'examining', statusLabel: '檢驗中', waitingTime: 42,
     progress: [
       { label: '抽血', value: 100 },
       { label: 'X光', value: 0 }
     ]
   },
   { 
-    id: '3', name: '王*宏', triageLevel: 2, arrivalTime: '10:18', chiefComplaint: '胸悶、喘',
-    status: 'reportReady', statusLabel: '可聽取', waitTime: 25,
+    id: '3', name: '王*宏', mrn:'***44', triageLevel: 2, arrivalTime: '10:18', chiefComplaint: '胸悶、喘',
+    status: 'reportReady', statusLabel: '可聽取', waitingTime: 5,
     progress: [
       { label: '抽血', value: 100 },
       { label: 'X光', value: 100 }

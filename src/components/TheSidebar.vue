@@ -51,9 +51,9 @@ const sidebarIconVars = computed(() => ({
 }));
 
 const menuItems = ref<SidebarItem[]>([
-  { id: 'clinic', label: '我的診間', icon: 'icon-clinic', path: '/clinic' },
-  { id: 'waiting', label: '待認領池', icon: 'icon-waiting', path: '/waiting' },
-  { id: 'record', label: '完診紀錄', icon: 'icon-record', path: '/records' }
+  { id: 'clinic', label: '候診中', icon: 'icon-clinic', path: '/clinic' },
+  { id: 'waiting', label: '待認領', icon: 'icon-waiting', path: '/waiting' },
+  { id: 'record', label: '已完診', icon: 'icon-record', path: '/records' }
 ]);
 
 const handleLogout = () => {
