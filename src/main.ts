@@ -1,5 +1,14 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import App from './App.vue';
+import router from './router';
 
-createApp(App).mount('#app')
+// 引入全域樣式入口 (SCSS 變數已透過 Vite 注入，此處為基礎樣式)
+import '@/assets/css/main.scss';
+
+const app = createApp(App);
+const pinia = createPinia();
+
+app.use(pinia);
+app.use(router);
+app.mount('#app');

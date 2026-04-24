@@ -13,7 +13,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "@/assets/css/index.scss" as *;`
+        // 這裡只注入「純定義」檔案，確保每個 .vue 都能讀到變數，但不會產生重複 CSS
+        additionalData: `@import "@/assets/css/shared.scss";`
       }
     }
   }

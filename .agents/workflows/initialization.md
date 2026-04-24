@@ -6,25 +6,31 @@ description: 初始化專案環境
 
 ### 1. **依賴安裝**
 
-- 提供安裝 `vue`, `pinia`, `typescript`, `sass` 的指令。
+- 提供安裝 `vue`, `pinia`, `vue-router`, `typescript`, `sass` 的指令。
 
 ### 2. **目錄結構**
 
-- 在 `src/` 建立符合 **Global Rules** 的資料夾：`assets/css`, `assets/img`, `assets/js`, `types`, `components/common`。
+- 在 `src/` 建立：`assets/css`, `assets/img`, `assets/js`, `types`, `utils`, `router`, `store`, `views`, `components/common`。
 
 ### 3. **基礎規範檔案**
 
-- **SCSS：** 產出符合 Global 定義的 `_space.scss`, `_color.scss`, `_typography.scss` 以及入口 `index.scss`。
-- **資源：** 資源管理 (src/assets/js/img.ts)：
-  **自動化維護**： 必須建立一個統一的資源導出模組。
-  格式規範\*\*： 必須使用 export const 以物件或常量形式導出所有圖片路徑。
-  路徑指引： AI 在分析 UI 時，若偵測到圖片需求，必須優先更新此檔案，確保專案中沒有任何 Hard-coded 的 src="/assets/img/..." 字串，所有引用皆透過 import 此模組實現。
+- **SCSS 系統建構：** - **定義層 (`_shared.scss`)**：僅包含 `_color.scss`, `_space.scss`, `_typography.scss` 的變數與 Mixins（純定義，不產生實體 CSS）。
+  - **渲染層 (`main.scss`)**：導入 `_shared.scss` 並定義 `body`, `reset` 等全域基礎樣式（此檔案為全專案唯一的實體樣式入口）。
+- **模板引用：** 參考 @boilerplates.md 產出 `main.ts`, `App.vue`, `router/index.ts`, `store/index.ts` 與 `assets/js/img.ts`。
 
 ### 4. **Vite 配置**
 
-- 配置 `@` 路徑別名與 SCSS 全域自動注入。
+- 配置 `@` 路徑別名。
+- **路徑別名**：配置 `@` 指向 `src` 目錄。
+- **全域變數注入 (`additionalData`)**：
+  - **執行動作**：僅將 `_shared.scss` 自動注入到所有組件。
+  - **排除 Module Loop 邏輯說明**：
+    - 嚴禁注入 `main.scss` 或任何包含實體 CSS 宣告（如 `body {}`）的檔案。
+    - **目的**：防止 Vite 在編譯每個組件時重複產生全域樣式，避免打包體積膨脹 (CSS Bloat) 與樣式權重衝突。
 
-### 5. **執行檢查**
+### 5. **入口掛載 (main.ts)**
+- 必須在 `main.ts` 中手動 `import '@/assets/css/main.scss'`，確保全域樣式僅被載入一次。
 
+### 6. **執行檢查**
 - [ ] 命名是否符合全域小駝峰？
 - [ ] 目錄結構是否符合 Global 定義？

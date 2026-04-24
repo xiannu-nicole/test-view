@@ -1,0 +1,24 @@
+// =============================================================================
+// Main Style Entry - V3 Emergency Dashboard
+// 這裡僅放置全域基礎樣式，變數與 Mixins 已透過 Vite 自動注入至所有組件
+// =============================================================================
+
+@import "./_shared";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-base;
+  background-color: $layout-bg;
+  color: $gray-900;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  font-family: inherit;
+}
