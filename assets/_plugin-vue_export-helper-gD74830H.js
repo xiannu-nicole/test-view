@@ -1,0 +1,1 @@
+import{a as e}from"./vue-router-CDlHQlIa.js";var t=e(`user`,{state:()=>({userInfo:null,isLogin:!1}),actions:{setUserInfo(e){this.userInfo=e,this.isLogin=!0},logout(){this.userInfo=null,this.isLogin=!1}}}),n=(e,t)=>{let n=e.__vccOpts||e;for(let[e,r]of t)n[e]=r;return n};export{t as n,n as t};
