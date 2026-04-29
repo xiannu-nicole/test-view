@@ -7,7 +7,7 @@
             <tr>
               <th class="col-index">#</th>
               <th class="col-info">病患資訊</th>
-              <th class="col-mrn">病歷號</th>
+              <th class="col-ptNo">病歷號</th>
               <th class="col-triage">檢傷級別</th>
               <th class="col-time">到達時間</th>
               <th class="col-reason">主訴</th>
@@ -20,7 +20,7 @@
               <td class="col-info">
                 <div class="name">{{ patient.name }}</div>
               </td>
-              <td class="col-mrn">{{ patient.mrn }}</td>
+              <td class="col-ptNo">{{ patient.ptNo }}</td>
               <td class="col-triage">
                 <span :class="['triage-badge', `level-${patient.triageLevel}`]">
                   {{ patient.triageLevel }} 級
@@ -40,11 +40,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import MainLayout from '@/components/MainLayout.vue';
+import { ref } from "vue";
+import MainLayout from "@/components/MainLayout.vue";
 
 interface WaitingPatient {
   id: string;
+  ptNo: string;
   name: string;
   triageLevel: 2 | 3 | 4 | 5;
   arrivalTime: string;
@@ -52,11 +53,46 @@ interface WaitingPatient {
 }
 
 const patients = ref<WaitingPatient[]>([
-  { id: '1', name: '張*仁', mrn: '***31', triageLevel: 3, arrivalTime: '10:15', chiefComplaint: '腹痛、噁心' },
-  { id: '2', name: '陳*華', mrn: '***61', triageLevel: 4, arrivalTime: '10:17', chiefComplaint: '頭暈' },
-  { id: '3', name: '林*強', mrn: '***32', triageLevel: 2, arrivalTime: '10:18', chiefComplaint: '胸悶、喘' },
-  { id: '4', name: '黃*婷', mrn: '***67', triageLevel: 5, arrivalTime: '10:20', chiefComplaint: '感冒、咳嗽' },
-  { id: '5', name: '吳*豪', mrn: '***99', triageLevel: 3, arrivalTime: '10:22', chiefComplaint: '扭傷' }
+  {
+    id: "1",
+    name: "張*仁",
+    ptNo: "***31",
+    triageLevel: 3,
+    arrivalTime: "10:15",
+    chiefComplaint: "腹痛、噁心",
+  },
+  {
+    id: "2",
+    name: "陳*華",
+    ptNo: "***61",
+    triageLevel: 4,
+    arrivalTime: "10:17",
+    chiefComplaint: "頭暈",
+  },
+  {
+    id: "3",
+    name: "林*強",
+    ptNo: "***32",
+    triageLevel: 2,
+    arrivalTime: "10:18",
+    chiefComplaint: "胸悶、喘",
+  },
+  {
+    id: "4",
+    name: "黃*婷",
+    ptNo: "***67",
+    triageLevel: 5,
+    arrivalTime: "10:20",
+    chiefComplaint: "感冒、咳嗽",
+  },
+  {
+    id: "5",
+    name: "吳*豪",
+    ptNo: "***99",
+    triageLevel: 3,
+    arrivalTime: "10:22",
+    chiefComplaint: "扭傷",
+  },
 ]);
 </script>
 
@@ -80,8 +116,8 @@ const patients = ref<WaitingPatient[]>([
   text-align: left;
 
   thead {
-    background-color: #fcf8f6; 
-    
+    background-color: #fcf8f6;
+
     th {
       padding: $spacing-24;
       @include font-style($fs-small, $fw-bold);
@@ -94,11 +130,11 @@ const patients = ref<WaitingPatient[]>([
     tr {
       border-bottom: 1px solid $gray-200;
       transition: background-color 0.2s;
-      
+
       &:hover {
         background-color: $gray-100;
       }
-      
+
       &:last-child {
         border-bottom: none;
       }
@@ -116,7 +152,7 @@ const patients = ref<WaitingPatient[]>([
       color: $gray-900;
       margin-bottom: $spacing-4;
     }
-    
+
     .meta {
       @include font-style($fs-small);
       color: $gray-500;
@@ -128,7 +164,7 @@ const patients = ref<WaitingPatient[]>([
     padding: $spacing-4 $spacing-16;
     border-radius: 4px;
     @include font-style($fs-base, $fw-bold);
-    
+
     &.level-2 {
       background-color: #fdeaea;
       color: #e57373;
@@ -160,7 +196,7 @@ const patients = ref<WaitingPatient[]>([
     cursor: pointer;
     @include font-style($fs-base, $fw-medium);
     transition: background-color 0.3s;
-    
+
     &:hover {
       background-color: $primary-color-hover;
     }

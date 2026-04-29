@@ -1,5 +1,6 @@
 export interface Patient {
   id: string;
+  ptNo?: string;
   name: string;
   triageLevel: number;
   arrivalTime: string;
@@ -7,6 +8,7 @@ export interface Patient {
   status?: 'initial' | 'examining' | 'reportReady' | 'waiting' | 'done';
   statusLabel?: string;
   waitTime?: number;
+  waitingTime?: number;
   progress?: {
     label: string;
     value: number;

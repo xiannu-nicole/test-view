@@ -4,8 +4,8 @@
     <td class="col-info">
       <div class="name">{{ patient.name }}</div>
     </td>
-    <td class="col-mrn">
-      <div class="mrn">{{ patient.mrn }}</div>
+    <td class="col-ptNo">
+      <div class="ptNo">{{ patient.ptNo }}</div>
     </td>
     <td class="col-triage">
       <span :class="['triage-badge', `level-${patient.triageLevel}`]">
@@ -17,10 +17,15 @@
     <td class="col-action">
       <div class="action-cell">
         <!-- 檢驗進度展示：未全數完成時顯示標籤且不可點選 -->
-        <div v-if="patient.progress && !isAllDone" class="progress-tag">檢驗中</div>
-        
+        <div v-if="patient.progress && !isAllDone" class="progress-tag">
+          檢驗中
+        </div>
+
         <!-- 行動按鈕：初診、已完成或無進度數據時顯示 -->
-        <button v-else :class="['action-btn', patient.status, { 'is-ready': isAllDone }]">
+        <button
+          v-else
+          :class="['action-btn', patient.status, { 'is-ready': isAllDone }]"
+        >
           {{ displayActionLabel }}
           <i class="icon icon-chevron-right"></i>
         </button>
@@ -30,8 +35,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { Patient } from '@/types/dashboard';
+import { computed } from "vue";
+import type { Patient } from "@/types/dashboard";
 
 const props = defineProps<{
   patient: Patient;
@@ -39,18 +44,23 @@ const props = defineProps<{
 }>();
 
 const isAllDone = computed(() => {
-  if (!props.patient.progress || props.patient.progress.length === 0) return false;
-  return props.patient.progress.every(p => p.value === 100);
+  if (!props.patient.progress || props.patient.progress.length === 0)
+    return false;
+  return props.patient.progress.every((p) => p.value === 100);
 });
 
 const displayActionLabel = computed(() => {
-  if (isAllDone.value) return '呼叫聽報告';
-  
+  if (isAllDone.value) return "呼叫聽報告";
+
   switch (props.patient.status) {
-    case 'initial': return '呼叫初診';
-    case 'examining': return '查看進度';
-    case 'reportReady': return '呼叫聽報告';
-    default: return '處理中';
+    case "initial":
+      return "呼叫初診";
+    case "examining":
+      return "查看進度";
+    case "reportReady":
+      return "呼叫聽報告";
+    default:
+      return "處理中";
   }
 });
 </script>
@@ -59,18 +69,16 @@ const displayActionLabel = computed(() => {
 .patient-card-row {
   border-bottom: 1px solid $gray-200;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background-color: $gray-100;
   }
-  
+
   td {
     padding: $spacing-20 $spacing-24;
     vertical-align: middle;
   }
 }
-
-
 
 .col-info {
   .name {
@@ -78,7 +86,7 @@ const displayActionLabel = computed(() => {
     color: $gray-900;
     margin-bottom: $spacing-4;
   }
-  
+
   .meta {
     @include font-style($fs-small);
     color: $gray-500;
@@ -90,21 +98,34 @@ const displayActionLabel = computed(() => {
   padding: $spacing-4 $spacing-16;
   border-radius: 4px;
   @include font-style($fs-base, $fw-bold);
-  
-  &.level-2 { background-color: #fdeaea; color: #e57373; }
-  &.level-3 { background-color: #fdf5e6; color: #fbc02d; }
-  &.level-4 { background-color: #e8f5e9; color: #4caf50; }
-  &.level-5 { background-color: #e3f2fd; color: #64b5f6; }
+
+  &.level-2 {
+    background-color: #fdeaea;
+    color: #e57373;
+  }
+  &.level-3 {
+    background-color: #fdf5e6;
+    color: #fbc02d;
+  }
+  &.level-4 {
+    background-color: #e8f5e9;
+    color: #4caf50;
+  }
+  &.level-5 {
+    background-color: #e3f2fd;
+    color: #64b5f6;
+  }
 }
 
-.col-time, .col-reason {
+.col-time,
+.col-reason {
   @include font-style($fs-base);
   color: $gray-900;
 }
 
 .col-action {
   text-align: right;
-  
+
   .action-cell {
     display: flex;
     justify-content: flex-end;
@@ -136,18 +157,24 @@ const displayActionLabel = computed(() => {
   cursor: pointer;
   @include font-style($fs-base, $fw-medium);
   transition: all 0.3s;
-  
-  &.initial, &.reportReady, &.is-ready {
+
+  &.initial,
+  &.reportReady,
+  &.is-ready {
     background-color: $accent-color;
     color: $white;
-    &:hover { background-color: $accent-color-hover; }
+    &:hover {
+      background-color: $accent-color-hover;
+    }
   }
-  
+
   &.examining:not(.is-ready) {
     background-color: $white;
     border: 1px solid $gray-300;
     color: $gray-700;
-    &:hover { background-color: $gray-100; }
+    &:hover {
+      background-color: $gray-100;
+    }
   }
 }
 

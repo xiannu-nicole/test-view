@@ -39,7 +39,7 @@ const router = createRouter({
 });
 
 // 全域守衛：更新頁面標題
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   if (to.meta.title) {
     document.title = `${to.meta.title} | 榮總急診系統`;
   }

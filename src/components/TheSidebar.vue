@@ -37,7 +37,7 @@
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/user';
-import { SidebarItem } from '@/types/dashboard';
+import type { SidebarItem } from '@/types/dashboard';
 import { img } from '@/assets/js/img.ts';
 
 const router = useRouter();
